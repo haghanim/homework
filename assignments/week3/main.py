@@ -42,7 +42,6 @@ def get_mnist_data() -> Tuple[DataLoader, DataLoader]:
     # Get the training data:
     train_data = MNIST(
         root="data", train=True, download=True, transform=Compose(_transform_list)
-        
     )
     # Create a data loader for the training data:
     train_loader = DataLoader(train_data, batch_size=64, shuffle=True)
