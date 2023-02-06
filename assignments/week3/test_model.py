@@ -1,7 +1,6 @@
 import inspect
 from model import MLP
 
-
 def test_has_correct_attributes():
     """
     Test that the LinearRegression class has the correct attributes.

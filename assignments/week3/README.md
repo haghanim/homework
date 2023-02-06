@@ -33,7 +33,11 @@ class MLP:
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
-        ...
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.num_classes = num_classes
+        self.activation = activation
+        self.initializer = initializer
 
     def forward(self, x):
         """
