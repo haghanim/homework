@@ -5,7 +5,7 @@ import torch
 
 
 class MLP(torch.nn.Module):
-    '''MLP'''
+    """MLP"""
 
     def __init__(
         self,
