@@ -29,23 +29,22 @@ class MLP(torch.nn.Module):
         self.hidden_size = hidden_size 
         self.num_classes = num_classes 
         self.hidden_count = hidden_count 
-        self.activation = activation 
-        self.initializer = initializer 
+        self.activation = activation() 
         
         # define first layer 
         self.fc1 = torch.nn.Linear(self.input_size, self.hidden_size)
-        self.initializer(self.fc1.weight)
+        initializer(self.fc1.weight)
 
         # define hidden layers 
-        layers = [torch.nn.Linear(self.hidden_size, self.hidden_size) for i in range(0, self.hidden_count - 1)]
+        layers = [torch.nn.Linear(self.hidden_size, self.hidden_size) for _ in range(self.hidden_count - 1)]
         self.hidden_layers = torch.nn.ModuleList(layers)
 
         for hidden_layer in self.hidden_layers:
-            self.initializer(hidden_layer.weight)
+            initializer(hidden_layer.weight)
 
         # define last layer
         self.fcn = torch.nn.Linear(self.hidden_size, self.num_classes)
-        self.initializer(self.fcn.weight)
+        initializer(self.fcn.weight)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -66,7 +65,7 @@ class MLP(torch.nn.Module):
         # 2. hidden layers
         for hidden_layer in self.hidden_layers:
             out = hidden_layer(out)
-            out =self.activation(out)
+            out = self.activation(out)
 
         out = self.fcn(out)
 
