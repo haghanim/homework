@@ -15,7 +15,14 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         MLP: The created model.
 
     """
-    hidden_size = 32*2
+    hidden_size = 32 * 2
     hidden_count = 3
 
-    return MLP(input_dim, hidden_size, output_dim, hidden_count, torch.nn.ReLU, torch.nn.init.uniform_)
+    return MLP(
+        input_dim,
+        hidden_size,
+        output_dim,
+        hidden_count,
+        torch.nn.ReLU,
+        torch.nn.init.uniform_,
+    )
