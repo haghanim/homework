@@ -3,6 +3,7 @@ from typing import Callable
 from numpy import ndarray
 import torch
 
+
 class MLP(torch.nn.Module):
     def __init__(
         self,
@@ -26,17 +27,20 @@ class MLP(torch.nn.Module):
         super(MLP, self).__init__()
 
         self.input_size = input_size
-        self.hidden_size = hidden_size 
-        self.num_classes = num_classes 
-        self.hidden_count = hidden_count 
-        self.activation = activation() 
-        
-        # define first layer 
+        self.hidden_size = hidden_size
+        self.num_classes = num_classes
+        self.hidden_count = hidden_count
+        self.activation = activation()
+
+        # define first layer
         self.fc1 = torch.nn.Linear(self.input_size, self.hidden_size)
         initializer(self.fc1.weight)
 
-        # define hidden layers 
-        layers = [torch.nn.Linear(self.hidden_size, self.hidden_size) for _ in range(self.hidden_count - 1)]
+        # define hidden layers
+        layers = [
+            torch.nn.Linear(self.hidden_size, self.hidden_size)
+            for _ in range(self.hidden_count - 1)
+        ]
         self.hidden_layers = torch.nn.ModuleList(layers)
 
         for hidden_layer in self.hidden_layers:
@@ -58,10 +62,10 @@ class MLP(torch.nn.Module):
         """
         # for each layer x @ w. then repeat until you get values for each class
 
-        # 1. first layer 
+        # 1. first layer
         out = self.fc1(x)
         out = self.activation(out)
-        
+
         # 2. hidden layers
         for hidden_layer in self.hidden_layers:
             out = hidden_layer(out)
@@ -70,4 +74,3 @@ class MLP(torch.nn.Module):
         out = self.fcn(out)
 
         return out
-
