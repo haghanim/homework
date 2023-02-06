@@ -1,3 +1,4 @@
+import torch
 from typing import Callable
 from numpy import ndarray
 import torch
