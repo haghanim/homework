@@ -6,10 +6,21 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 
 class CONFIG:
+    # batch_size = 64
+    # num_epochs = 10
+    # initial_learning_rate = 0.01
+    # initial_weight_decay = 0
+
     batch_size = 64
-    num_epochs = 2
+    num_epochs = 10
     initial_learning_rate = 0.001
     initial_weight_decay = 0
+
+    
+    
+    
+    #?? 128 batch_size -> higher test acc (just right, more is bad)??
+
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
