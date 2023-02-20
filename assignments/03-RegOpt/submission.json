@@ -1,12 +1,18 @@
 {
-    "assignment_name": "RegOpt",
+    "assignment_name": "MLP",
     "contributors": [
         {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
+            "name": "Mark Haghani",
+            "pennkey": "haghanim"
+        },
+        {
+            "name": "Nikolas Mihailidis",
+            "pennkey": "mnikolas"
         }
     ],
     "sources": [
-        "Don't forget to list your sources/attribution here!"
+        "https://example.com",
+        "Conversations with TA (include TA's name)",
+        "LLM (include information about the LLM and how it was used)"
     ]
 }
