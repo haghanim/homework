@@ -17,7 +17,7 @@ class CustomLRScheduler(_LRScheduler):
         self.gamma = gamma
 
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
-        # leave alone 
+        # leave alone
 
     def get_lr(self) -> List[float]:
         # Note to students: You CANNOT change the arguments or return type of
@@ -25,6 +25,7 @@ class CustomLRScheduler(_LRScheduler):
 
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
-        return [base_lr * self.gamma ** (self.last_epoch // self.step_size) 
-        for base_lr in self.base_lrs]
-
+        return [
+            base_lr * self.gamma ** (self.last_epoch // self.step_size)
+            for base_lr in self.base_lrs
+        ]
