@@ -33,11 +33,10 @@ class CustomLRScheduler(_LRScheduler):
             A list of floats representing the current learning rate for each
             parameter group in the optimizer.
         """
-        
+
         # Note to students: You CANNOT change the arguments or return type of
         # this function (because it is called internally by Torch)
 
         # ... Your Code Here ...
         # Here's our dumb baseline implementation:
         return [i for i in self.base_lrs]
-        
