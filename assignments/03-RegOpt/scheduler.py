@@ -60,7 +60,6 @@ class CustomLRScheduler(_LRScheduler):
         # # lr = lr / (self.batch_size ** 0.5)
 
         for group in self.optimizer.param_groups:
-
             # DID NOT HELP
             # if (self.last_epoch == 0) or (self.last_epoch % self.step_size != 0):
             #     lr = lr
