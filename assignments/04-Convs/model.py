@@ -3,7 +3,14 @@ import torch.nn as nn
 
 
 class Model(torch.nn.Module):
+    """
+    CNN Model
+    """
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
+        """
+        Forward pass
+        """
         super(Model, self).__init__()
         self.num_channels = num_channels
         self.num_classes = num_classes
@@ -28,6 +35,9 @@ class Model(torch.nn.Module):
         self.fc2 = nn.Linear(128, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass
+        """
         x = self.conv1(x)
         x = self.relu1(x)
         x = self.pool1(x)
