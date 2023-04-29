@@ -84,7 +84,7 @@ class Agent:
             )
             is_lander_outside_viewport = x > 0
 
-            is_not_succ_land = is_lander_body_touching_moon or is_not_succ_land
+            is_not_succ_land = is_lander_body_touching_moon or is_lander_outside_viewport
 
             if is_not_succ_land:
                 reward -= 100
