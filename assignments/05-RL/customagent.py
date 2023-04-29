@@ -1,34 +1,36 @@
 import math
 import gymnasium as gym
 
-# https://gymnasium.farama.org/environments/box2d/lunar_lander/
-# observation = state of spacecraft - position and velocity
-# The state is an 8-dimensional vector:
-# 1:2, the coordinates of the lander in x & y,
-# 3:4 linear velocities in x & y,
-# 5 angle,
-# 6:its angular velocity,
-# 7:8 two booleans that represent whether each leg is in contact with the ground or not.
-# action_space = all possible moves spacecraft can make
-# 0: do nothing
-# 1: fire left orientation engine
-# 2: fire main engine
-# 3: fire right orientation engine
-
 
 class Agent:
+    """
+    https://gymnasium.farama.org/environments/box2d/lunar_lander/
+    observation = state of spacecraft - position and velocity
+    The state is an 8-dimensional vector:
+    1:2, the coordinates of the lander in x & y,
+    3:4 linear velocities in x & y,
+    5 angle,
+    6:its angular velocity,
+    7:8 two booleans that represent whether each leg is in contact with the ground or not.
+    action_space = all possible moves spacecraft can make
+    0: do nothing
+    1: fire left orientation engine
+    2: fire main engine
+    3: fire right orientation engine
+    """
+
     def __init__(
         self, action_space: gym.spaces.Discrete, observation_space: gym.spaces.Box
     ):
         self.action_space = action_space
         self.observation_space = observation_space
 
-    #  The act method should take an observation and return an action - 1) fire left, 2) right, 3) main engine.
     def act(self, observation: gym.spaces.Box) -> gym.spaces.Discrete:
+        """
+        The act method should take an observation and return an action - 1) fire left, 2) right, 3) main engine.
+        """
         return self.action_space.sample()
 
-    # The learn method should take an observation, a reward, a boolean indicating
-    # whether the episode has terminated, and a boolean indicating whether the episode was truncated:
     def learn(
         self,
         observation: gym.spaces.Box,
@@ -36,6 +38,10 @@ class Agent:
         terminated: bool,
         truncated: bool,
     ) -> None:
+        """
+        The learn method should take an observation, a reward, a boolean indicating
+        whether the episode has terminated, and a boolean indicating whether the episode was truncated:
+        """
         # 1) Closer to landing pad
         x, y = self.observation_space.low[0], self.observation_space.low[1]
         o_x, o_y = observation[0], observation[1]
