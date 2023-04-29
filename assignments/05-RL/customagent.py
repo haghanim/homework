@@ -76,6 +76,7 @@ class Agent:
         reward += 10 * (is_left_leg_touching + is_right_leg_touching)
 
         # 5) side engine
+        self.action_space
 
         # 7) landing / termination
         if terminated:
@@ -84,7 +85,9 @@ class Agent:
             )
             is_lander_outside_viewport = x > 0
 
-            is_not_succ_land = is_lander_body_touching_moon or is_lander_outside_viewport
+            is_not_succ_land = (
+                is_lander_body_touching_moon or is_lander_outside_viewport
+            )
 
             if is_not_succ_land:
                 reward -= 100
