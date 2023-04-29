@@ -76,9 +76,12 @@ class Agent:
         reward += 10 * (is_left_leg_touching + is_right_leg_touching)
 
         # 5) side engine
-        self.action_space
 
         # 7) landing / termination
+        if truncated:
+            reward -= 100
+            return
+
         if terminated:
             is_lander_body_touching_moon = not (
                 is_left_leg_touching and is_right_leg_touching
