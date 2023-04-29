@@ -84,7 +84,7 @@ class Agent:
                 reward -= 100
             else:
                 reward += 100
-            
+
             reward = reward
 
         pass
