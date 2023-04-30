@@ -95,14 +95,6 @@ class Agent:
             reward -= 100
             return
 
-        current_q = self.q_table[observation][self.last_action]
-
-        if terminated:
-            target_q = reward
-        else:
-            next_q = np.max(self.q_table[next_observation])
-            target_q = reward + self.gamma * next_q * (1 - next_terminated)
-
         if terminated:
             is_lander_body_touching_moon = not (
                 is_left_leg_touching and is_right_leg_touching
@@ -115,9 +107,8 @@ class Agent:
 
             if is_not_succ_land:
                 reward -= 100
-            else:
-                reward += 100
 
-            reward = reward
+        if y == 0:
+            reward += 100
 
         pass
