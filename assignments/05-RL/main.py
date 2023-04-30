@@ -25,10 +25,7 @@ SHOW_ANIMATIONS = True
 env = gym.make("LunarLander-v2", render_mode="human" if SHOW_ANIMATIONS else "none")
 observation, info = env.reset(seed=42)
 
-agent = Agent(
-    action_space=env.action_space,
-    observation_space=env.observation_space
-)
+agent = Agent(action_space=env.action_space, observation_space=env.observation_space)
 
 total_reward = 0
 last_n_rewards = []
