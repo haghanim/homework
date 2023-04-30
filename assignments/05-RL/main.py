@@ -27,7 +27,7 @@ observation, info = env.reset(seed=42)
 
 agent = Agent(
     action_space=env.action_space,
-    observation_space=env.observation_space,
+    observation_space=env.observation_space
 )
 
 total_reward = 0

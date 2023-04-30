@@ -1,5 +1,6 @@
 import math
 import gymnasium as gym
+import numpy as np
 
 
 class Agent:
@@ -24,12 +25,19 @@ class Agent:
     ):
         self.action_space = action_space
         self.observation_space = observation_space
+        self.last_action = None
+
+        self.alpha = 0.1  # learning rate
+        self.gamma = 0.5  # discount factor
+        self.epsilon = 0.1  # exploration rate
 
     def act(self, observation: gym.spaces.Box) -> gym.spaces.Discrete:
         """
         The act method should take an observation and return an action - 1) fire left, 2) right, 3) main engine.
         """
-        return self.action_space.sample()
+        self.last_action = self.action_space.sample()
+
+        return self.last_action
 
     def learn(
         self,
@@ -76,11 +84,24 @@ class Agent:
         reward += 10 * (is_left_leg_touching + is_right_leg_touching)
 
         # 5) side engine
+        if self.last_action == 1 or self.last_action == 3:
+            reward -= 0.03
+
+        if self.last_action == 2:
+            reward -= 0.3
 
         # 7) landing / termination
         if truncated:
             reward -= 100
             return
+
+        current_q = self.q_table[observation][self.last_action]
+
+        if terminated:
+            target_q = reward
+        else:
+            next_q = np.max(self.q_table[next_observation])
+            target_q = reward + self.gamma * next_q * (1 - next_terminated)
 
         if terminated:
             is_lander_body_touching_moon = not (
